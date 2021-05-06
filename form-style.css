@@ -1,0 +1,108 @@
+@font-face {
+    font-family:'handwriting';
+    src: url("./asset/journal-webfont.woff") format('woff'), url("./asset/journal-webfont.woff2") format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'typewriter';
+    src: url("./asset/veteran_typewriter-webfont.woff"), url("./asset/veteran_typewriter-webfont.woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+.typewriter-test{
+    font: 2rem 'handwriting', cursive;
+    color: hsl(359,50%,50%);
+}
+.handwriting-test{
+    font: 2.5rem 'typewriter',monospace;
+    color: hsl(200,50%,50%);
+}
+body{
+    background-color: hsl(0,5%,75%);
+}
+form.postcard{
+    box-sizing: border-box;
+    font: 1.3rem 'typewriter', "Courier New" ,monospace;
+    /*Measure and background*/
+    width: 740px;
+    height: 498px;
+    background: #eee url("./asset/background.jpg");
+    /*Center*/
+    margin: 1rem auto;
+    padding: 0 0 100px;
+    /*Grid*/
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 6fr repeat(3, 1fr);
+}
+.postcard input, .postcard textarea, .postcard button{
+    font: 1.5rem 'handwriting', cursive;
+    background-color:rgba(0,0,0,.01);
+    border-style: none;
+    outline: none;
+    letter-spacing: .1em;
+    color: hsl(200,50%,10%);
+}
+.postcard input:focus, .postcard textarea:focus, .postcard input::selection, .postcard textarea::selection{
+    background-color:rgba(0,0,0,.7);
+    color: rgb(220,220,220);
+}
+.postcard button:focus{
+    animation-duration: 1.5s;
+    animation-name: blinking;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes blinking {
+    from {
+        color: hsl(0,50%, 70%);
+    }
+
+    to {
+        color: hsl(200,50%,10%);
+    }
+}
+/*test
+.postcard div{
+outline: 1px solid red;
+}
+*/
+/*grid placement and more*/
+.postcard .message{
+    grid-column: 1;
+    grid-row: 1/5;
+    /*Flex*/
+    display: flex;
+    flex-direction: column;
+    /*pad inside*/
+    padding: 10px;
+    /*prepare textarea absolute positioning */
+    position: relative;
+}
+.postcard .message > textarea{
+    margin: 100px 20px 0 -5px;
+    /*Let the user manipulate Textarea without breaking the form layout*/
+    position: absolute;
+    resize: both;
+    /*SIZE*/
+    width: 100%;
+}
+.postcard .to{
+    display: flex;
+    padding-left: 25px;
+}
+.postcard .to>h1{
+    font-size: 1em;
+    align-self: flex-end;
+}
+.postcard button[type='submit']{
+    background-color: hsl(0,50%,90%);
+    transform: rotate(-2deg);
+    border-radius: 50%;
+    padding: 1rem;
+}
+.postcard button[type='submit']:after{
+    content: " >>>";
+}
